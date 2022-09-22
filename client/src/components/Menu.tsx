@@ -27,7 +27,7 @@ export default function Menu() {
         };
 
     return (
-        <Box sx={{display: {xs: 'block', sm: 'none'} }}>
+        <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
             <IconButton onClick={toggleDrawer(true)}>
                 <img src='images/icon-menu.svg' alt='open' />
             </IconButton>
@@ -40,7 +40,9 @@ export default function Menu() {
                 >
                     <List>
                         <ListItem>
-                            <ListItemButton onClick={toggleDrawer(false)}>
+                            <ListItemButton onClick={toggleDrawer(false)} sx={{
+                                marginBottom: '1rem'
+                            }}>
                                 <img src='images/icon-close.svg' alt='close' />
                             </ListItemButton>
                         </ListItem>
@@ -51,7 +53,7 @@ export default function Menu() {
                             'About',
                             'Contact',
                         ].map(text => (
-                            <ListItem key={text}>
+                            <ListItem dense key={text}>
                                 <ListItemButton href='#'>
                                     <ListItemText primary={text} />
                                 </ListItemButton>
