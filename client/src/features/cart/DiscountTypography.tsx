@@ -8,5 +8,8 @@ export const DiscountTypography = styled(Typography)<TypographyProps>(
         backgroundColor: theme.palette.primary.light,
         padding: '4px 8px',
         borderRadius: '8px',
+        [theme.breakpoints.up('md')]: {
+            fontSize: '.75rem'
+        }
     })
 );

@@ -41,14 +41,28 @@ const themeCustomizations = createTheme({
             fontSize: '1.75rem',
             fontWeight: 'bold',
             color: themeBase.palette.secondary.contrastText,
+            [themeBase.breakpoints.up('md')]: {
+                fontSize: '2.5rem'
+            }
         },
         h3: {
-            fontSize: '1.125rem',
+            fontSize: '1.75rem',
             fontWeight: 'bold',
             color: themeBase.palette.secondary.contrastText,
         },
+        h4: {
+            fontSize: '1.125rem',
+            fontWeight: 'bold',
+            color: themeBase.palette.secondary.contrastText,
+            [themeBase.breakpoints.up('md')]: {
+                fontSize: '.875rem'
+            }
+        },
         body1: {
             color: themeBase.palette.secondary.dark,
+            [themeBase.breakpoints.up('md')]: {
+                fontSize: '.875rem'
+            }
         },
     },
     components: {
@@ -58,6 +72,9 @@ const themeCustomizations = createTheme({
                     fontSize: '1rem',
                     fontWeight: 'bold',
                     textTransform: 'none',
+                    [themeBase.breakpoints.up('md')]: {
+                        fontSize: '.875rem'
+                    }
                 },
             },
         },

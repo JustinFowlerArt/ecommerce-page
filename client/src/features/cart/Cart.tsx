@@ -55,7 +55,7 @@ export default function Cart() {
                 // }}
             >
                 <Stack paddingX={3} paddingY={4} spacing={2}>
-                    <Typography variant='h3'>Cart </Typography>
+                    <Typography variant='h4'>Cart </Typography>
                     <Divider
                         sx={{
                             marginLeft: '-24px !important',
@@ -78,15 +78,29 @@ export default function Cart() {
                             <Typography noWrap={true}>
                                 Fall Limited Edition Sneakers
                             </Typography>
-                            <Typography>$125.00 x 3 <Typography component='span' sx={{ fontWeight: 'bold', color: 'secondary.contrastText'}}>$375</Typography></Typography>
+                            <Typography>
+                                $125.00 x 3{' '}
+                                <Typography
+                                    component='span'
+                                    sx={{
+                                        fontWeight: 'bold',
+                                        color: 'secondary.contrastText',
+                                    }}
+                                >
+                                    $375
+                                </Typography>
+                            </Typography>
                         </Stack>
-                        <IconButton >
+                        <IconButton>
                             <DeleteIcon />
                         </IconButton>
                     </Stack>
                     <Button
                         variant='contained'
-                        sx={{ padding: '16px 0', borderRadius: '10px' }}
+                        sx={{
+                            padding: { xs: '16px 0', md: '12px 0' },
+                            borderRadius: '10px',
+                        }}
                         fullWidth={true}
                     >
                         Checkout

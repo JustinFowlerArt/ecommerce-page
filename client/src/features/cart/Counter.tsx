@@ -10,7 +10,7 @@ export const Counter = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <Box
+        <Box width={{xs: '100%', md: 'auto'}}
             sx={{
                 backgroundColor: 'secondary.light',
                 borderRadius: '10px',
@@ -28,7 +28,7 @@ export const Counter = () => {
                 >
                     <RemoveIcon />
                 </IconButton>
-                <Typography variant='h3'>{count}</Typography>
+                <Typography variant='h4'>{count}</Typography>
                 <IconButton
                     color='primary'
                     onClick={() => dispatch(increment())}

@@ -1,12 +1,12 @@
 import Grid from '@mui/material/Unstable_Grid2';
-import { Stack, Link, Avatar } from '@mui/material';
+import { Stack, Link, Avatar, Divider } from '@mui/material';
 import Menu from './Menu';
 import Cart from '../features/cart/Cart';
 
 export const Header = () => (
     <header>
-        <Grid container padding={2}>
-            <Grid xs={6}>
+        <Grid container paddingX={{ xs: 2, md: 0 }} paddingY={2}>
+            <Grid xs={6} md={10}>
                 <Stack
                     direction='row'
                     spacing={{ xs: 1, sm: 0 }}
@@ -20,7 +20,7 @@ export const Header = () => (
                         direction='row'
                         spacing={3}
                         pl={3}
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{ display: { xs: 'none', md: 'block' } }}
                     >
                         {[
                             'Collections',
@@ -29,14 +29,19 @@ export const Header = () => (
                             'About',
                             'Contact',
                         ].map(text => (
-                            <Link href='#' key={text}>
+                            <Link
+                                href='#'
+                                key={text}
+                                underline='none'
+                                color='secondary.dark'
+                            >
                                 {text}
                             </Link>
                         ))}
                     </Stack>
                 </Stack>
             </Grid>
-            <Grid xs={6}>
+            <Grid xs={6} md={2}>
                 <Stack
                     direction='row'
                     spacing={2}
@@ -52,5 +57,6 @@ export const Header = () => (
                 </Stack>
             </Grid>
         </Grid>
+        <Divider />
     </header>
 );
