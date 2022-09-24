@@ -6,11 +6,13 @@ import {
     Button,
     Divider,
     Avatar,
+    Stack,
+    useTheme,
+    useMediaQuery,
+    Badge,
 } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Stack } from '@mui/system';
-import { truncate } from 'fs';
 
 export default function Cart() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
@@ -25,34 +27,35 @@ export default function Cart() {
         setAnchorEl(null);
     };
 
+    const theme = useTheme();
+    const md = useMediaQuery(theme.breakpoints.up('md'));
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
     return (
         <div>
             <IconButton aria-describedby={id} onClick={handleClick}>
-                <ShoppingCartOutlinedIcon />
+                <Badge badgeContent={3} color='primary'>
+                    <ShoppingCartOutlinedIcon />
+                </Badge>
             </IconButton>
             <Popover
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                anchorReference='anchorPosition'
                 disableScrollLock={true}
                 onClose={handleClose}
                 marginThreshold={8}
-                anchorPosition={{
-                    top: 72,
-                    left: 6,
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
                 }}
-                // anchorOrigin={{
-                //     vertical: 'bottom',
-                //     horizontal: 'center',
-                // }}
-                // transformOrigin={{
-                //     vertical: -20,
-                //     horizontal: 0,
-                // }}
+                transformOrigin={
+                    md
+                        ? { vertical: 0, horizontal: 'center' }
+                        : { vertical: -24, horizontal: 'center' }
+                }
             >
                 <Stack paddingX={3} paddingY={4} spacing={2}>
                     <Typography variant='h4'>Cart </Typography>
@@ -100,6 +103,9 @@ export default function Cart() {
                         sx={{
                             padding: { xs: '16px 0', md: '12px 0' },
                             borderRadius: '10px',
+                            '&:hover': {
+                                backgroundColor: 'primary.light',
+                            },
                         }}
                         fullWidth={true}
                     >

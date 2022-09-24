@@ -27,7 +27,7 @@ export default function Menu() {
         };
 
     return (
-        <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
             <IconButton onClick={toggleDrawer(true)}>
                 <img src='images/icon-menu.svg' alt='open' />
             </IconButton>

@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 const themeBase = createTheme({
     palette: {
         primary: {
-            light: 'hsl(25, 100%, 94%)',
+            light: 'hsl(26, 100%, 70%)',
             main: 'hsl(26, 100%, 55%)',
             contrastText: 'hsl(25, 100%, 94%)',
         },
@@ -90,10 +90,17 @@ const themeCustomizations = createTheme({
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    maxWidth: 'calc(100% - 28px) !important'
+                    maxWidth: 'calc(100% - 16px) !important'
                 }
             }
         },
+        MuiModal: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                }
+            }
+        }
     },
 });
 
