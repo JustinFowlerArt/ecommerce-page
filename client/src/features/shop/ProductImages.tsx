@@ -1,128 +1,61 @@
-import {
-    ImageList,
-    ImageListItem,
-    useTheme,
-    useMediaQuery,
-    Box,
-    IconButton,
-} from '@mui/material';
-import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import CloseIcon from '@mui/icons-material/Close';
-import { Images } from './Product';
-import { NavigationButton } from './NavigationButton';
+import { useState } from 'react';
+import { Box, Modal } from '@mui/material';
+import { ImageCarousel } from './ImageCarousel';
+import { Image } from '../../types/shared/image';
+
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    p: 4,
+    '&:focus-visible': {
+        outline: 0,
+    },
+};
 
 interface Props {
-    images: Images[];
-    handleOpen: () => void;
-    handleClose?: () => void;
-    open?: boolean;
+    images: Image[];
 }
 
-export const ProductImages = ({
-    images,
-    handleOpen,
-    handleClose,
-    open,
-}: Props) => {
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up('md'));
+export const ProductImages = ({ images }: Props) => {
+    const [open, setOpen] = useState(false);
+    const [imageIndex, setImageIndex] = useState(0);
+
+    const handleOpen = (index: number) => {
+        setImageIndex(index);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <>
-            <Box position='relative' width='100%'>
-                <img
-                    onClick={!open && md ? handleOpen : undefined}
-                    style={
-                        md
-                            ? {
-                                  borderRadius: '10px',
-                                  cursor: !open ? 'pointer' : 'default',
-                              }
-                            : {
-                                  height: '300px',
-                                  objectFit: 'cover',
-                              }
-                    }
-                    width='100%'
-                    src={`images/${images[0].url}`}
-                    alt='sneakers'
-                />
-                <NavigationButton open={open} direction='left'>
-                    <KeyboardArrowLeftRoundedIcon
-                        sx={{
-                            color: 'secondary.contrastText',
-                            '&:hover': {
-                                color: 'primary.main',
-                            },
-                        }}
-                    />
-                </NavigationButton>
-                <NavigationButton open={open} direction='right'>
-                    <KeyboardArrowRightRoundedIcon
-                        sx={{
-                            color: 'secondary.contrastText',
-                            '&:hover': {
-                                color: 'primary.main',
-                            },
-                        }}
-                    />
-                </NavigationButton>
-                <IconButton
-                    onClick={handleClose}
-                    sx={{
-                        display: open ? '' : 'none',
-                        position: 'absolute',
-                        top: -40,
-                        right: -12,
-                    }}
+            <ImageCarousel
+                images={images}
+                imageIndex={imageIndex}
+                handleOpen={handleOpen}
+            />
+            <div>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='modal-modal-title'
+                    aria-describedby='modal-modal-description'
                 >
-                    <CloseIcon
-                        sx={{
-                            color: 'white',
-                            '&:hover': {
-                                color: 'primary.main',
-                            },
-                        }}
-                    />
-                </IconButton>
-            </Box>
-            <ImageList
-                sx={{
-                    width: '100%',
-                    padding: open ? '8px 32px' : '',
-                    display: { xs: 'none', md: 'grid' },
-                }}
-                cols={4}
-                gap={open ? 24 : 20}
-                rowHeight='auto'
-            >
-                {images.map(item => (
-                    <ImageListItem
-                        key={item.title}
-                        sx={{
-                            '&:active': {
-                                filter: 'contrast(25%) brightness(1.75)',
-                                border: '2px solid hsl(26, 100%, 55%)',
-                                borderRadius: '10px',
-                            },
-                            '&:hover': {
-                                filter: 'contrast(50%) brightness(1.35)',
-                            },
-                        }}
-                    >
-                        <img
-                            style={{
-                                borderRadius: '10px',
-                                cursor: 'pointer',
-                            }}
-                            src={`images/${item.url}?w=50&h=50&fit=crop&auto=format`}
-                            alt={item.title}
-                            loading='lazy'
+                    <Box sx={style}>
+                        <ImageCarousel
+                            images={images}
+                            imageIndex={imageIndex}
+                            open={open}
+                            handleClose={handleClose}
                         />
-                    </ImageListItem>
-                ))}
-            </ImageList>
+                    </Box>
+                </Modal>
+            </div>
         </>
     );
 };

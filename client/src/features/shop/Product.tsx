@@ -2,21 +2,9 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, Typography } from '@mui/material';
 import { DiscountTypography } from '../cart/DiscountTypography';
 import { BasePrice } from '../cart/BasePrice';
-import { ImageCarousel } from './ImageCarousel';
+import { ProductImages } from './ProductImages';
 import { AddToCart } from './AddToCart';
-
-export type iProduct = {
-    title: string;
-    description: string;
-    price: number;
-    salePrice: number;
-    images: Images[];
-};
-
-export type Images = {
-    title: string;
-    url: string;
-};
+import { iProduct } from '../../types/shop/product';
 
 interface Props {
     product: iProduct;
@@ -26,7 +14,7 @@ export const Product = ({ product }: Props) => (
     <main>
         <Grid container>
             <Grid container xs={12} md={6} padding={{ xs: 0, md: 6 }}>
-                <ImageCarousel images={product.images} />
+                <ProductImages images={product.images} />
             </Grid>
             <Grid
                 container
