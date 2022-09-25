@@ -15,11 +15,7 @@ const style = {
     },
 };
 
-interface Props {
-    images: Image[];
-}
-
-export const ProductImages = ({ images }: Props) => {
+export const ProductImages = ({ images }: {images: Image[]}) => {
     const [open, setOpen] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);
 
@@ -43,6 +39,9 @@ export const ProductImages = ({ images }: Props) => {
                 <Modal
                     open={open}
                     onClose={handleClose}
+                    sx={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    }}
                     aria-labelledby='modal-modal-title'
                     aria-describedby='modal-modal-description'
                 >

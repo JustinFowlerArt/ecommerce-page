@@ -1,16 +1,12 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, Typography } from '@mui/material';
-import { DiscountTypography } from '../cart/DiscountTypography';
-import { BasePrice } from '../cart/BasePrice';
+import { DiscountTypography } from './DiscountTypography';
+import { BasePrice } from './BasePrice';
 import { ProductImages } from './ProductImages';
-import { AddToCart } from './AddToCart';
+import { AddToCart } from '../cart/AddToCart';
 import { iProduct } from '../../types/shop/product';
 
-interface Props {
-    product: iProduct;
-}
-
-export const Product = ({ product }: Props) => (
+export const Product = ({ product }: {product: iProduct}) => (
     <main>
         <Grid container>
             <Grid container xs={12} md={6} padding={{ xs: 0, md: 6 }}>

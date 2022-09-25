@@ -7,7 +7,11 @@ import data from './app/data.json';
 
 const App = () => (
     <ThemeProvider theme={theme}>
-        <Container disableGutters={true} maxWidth='md' sx={{ marginBottom: '4rem' }}>
+        <Container
+            disableGutters={true}
+            maxWidth='md'
+            sx={{ xs: { marginBottom: '4rem' }, md: { marginBottom: '0' } }}
+        >
             <Header />
             <Product product={data[0]} />
         </Container>

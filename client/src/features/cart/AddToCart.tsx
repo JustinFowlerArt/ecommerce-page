@@ -1,22 +1,25 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Button, Stack } from '@mui/material';
-import { Counter } from '../cart/Counter';
-import { iProduct } from './Product';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { Counter } from './Counter';
+import { iProduct } from '../../types/shop/product';
+import { useAppDispatch } from '../../app/hooks';
 import { useState } from 'react';
+import { addProduct } from './cartSlice';
 
-interface Props {
-    product: iProduct;
-}
-export const AddToCart = ({ product }: Props) => {
+export const AddToCart = ({ product }: {product: iProduct}) => {
     const [count, setCount] = useState(0);
-    // The `state` arg is correctly typed as `RootState` already
-    //  const count = useAppSelector(state => state.cart.value);
-    //  const dispatch = useAppDispatch();
+
+    const dispatch = useAppDispatch();
 
     const handleClick = (value: number) => {
         if (count + value < 0) return;
         setCount(count + value);
+    };
+
+    const handleSubmit = () => {
+        const addedProduct = {...product};
+        addedProduct.quantity = count;
+        dispatch(addProduct(addedProduct));
     };
 
     return (
@@ -31,6 +34,8 @@ export const AddToCart = ({ product }: Props) => {
                 variant='contained'
                 startIcon={<ShoppingCartOutlinedIcon />}
                 fullWidth={true}
+                onClick={handleSubmit}
+                disabled={count === 0}
                 sx={{
                     padding: { xs: '16px 0', md: '12px 0' },
                     borderRadius: '10px',
@@ -40,7 +45,6 @@ export const AddToCart = ({ product }: Props) => {
                         boxShadow: '0 15px 30px 10px hsla(26 100% 55% / 25%)',
                     },
                 }}
-                
             >
                 Add to cart
             </Button>

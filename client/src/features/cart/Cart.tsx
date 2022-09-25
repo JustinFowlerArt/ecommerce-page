@@ -5,19 +5,30 @@ import {
     IconButton,
     Button,
     Divider,
-    Avatar,
     Stack,
     useTheme,
     useMediaQuery,
     Badge,
 } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { cartContents, checkout } from '../cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { CartItem } from './CartItem';
 
 export default function Cart() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
         null
     );
+    const [message, setMessage] = React.useState('Your cart is empty')
+
+    const contents = useAppSelector(cartContents);
+    const dispatch = useAppDispatch();
+
+    const theme = useTheme();
+    const md = useMediaQuery(theme.breakpoints.up('md'));
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -27,16 +38,15 @@ export default function Cart() {
         setAnchorEl(null);
     };
 
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up('md'));
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    const handleCheckout = () => {
+        setMessage('Order received. Thanks for shopping!')
+        dispatch(checkout())
+    }
 
     return (
         <div>
             <IconButton aria-describedby={id} onClick={handleClick}>
-                <Badge badgeContent={3} color='primary'>
+                <Badge badgeContent={contents.length} color='primary'>
                     <ShoppingCartOutlinedIcon />
                 </Badge>
             </IconButton>
@@ -47,6 +57,13 @@ export default function Cart() {
                 disableScrollLock={true}
                 onClose={handleClose}
                 marginThreshold={8}
+                elevation={16}
+                sx={{
+                    '& .MuiPaper-root': {
+                        maxWidth: 'calc(100% - 16px) !important',
+                        minWidth: !md ? 'calc(100% - 16px) !important' : '',
+                    },
+                }}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center',
@@ -58,59 +75,44 @@ export default function Cart() {
                 }
             >
                 <Stack paddingX={3} paddingY={4} spacing={2}>
-                    <Typography variant='h4'>Cart </Typography>
+                    <Typography variant='h4'>Cart</Typography>
                     <Divider
                         sx={{
                             marginLeft: '-24px !important',
                             marginRight: '-24px !important',
                         }}
                     />
-                    <Stack
-                        direction='row'
-                        spacing={2}
-                        justifyContent='space-between'
-                        alignItems='center'
-                    >
-                        <Avatar
-                            variant='rounded'
-                            src='/images/image-product-1-thumbnail.jpg'
-                            alt='shoes'
-                            sx={{ width: '50px', height: '50px' }}
-                        />
-                        <Stack maxWidth={'60%'}>
-                            <Typography noWrap={true}>
-                                Fall Limited Edition Sneakers
-                            </Typography>
-                            <Typography>
-                                $125.00 x 3{' '}
-                                <Typography
-                                    component='span'
-                                    sx={{
-                                        fontWeight: 'bold',
-                                        color: 'secondary.contrastText',
-                                    }}
-                                >
-                                    $375
-                                </Typography>
-                            </Typography>
-                        </Stack>
-                        <IconButton>
-                            <DeleteIcon />
-                        </IconButton>
-                    </Stack>
-                    <Button
-                        variant='contained'
-                        sx={{
-                            padding: { xs: '16px 0', md: '12px 0' },
-                            borderRadius: '10px',
-                            '&:hover': {
-                                backgroundColor: 'primary.light',
-                            },
-                        }}
-                        fullWidth={true}
-                    >
-                        Checkout
-                    </Button>
+                    {contents.length === 0 ? (
+                        <Typography
+                            color='secondary.dark'
+                            fontWeight='bold'
+                            paddingX={{ md: 10 }}
+                            paddingY={6}
+                            align='center'
+                        >
+                            {message}
+                        </Typography>
+                    ) : (
+                        <>
+                            {contents.map(product => (
+                                <CartItem key={product.id} product={product} />
+                            ))}
+                            <Button
+                                variant='contained'
+                                sx={{
+                                    padding: { xs: '16px 0', md: '12px 0' },
+                                    borderRadius: '10px',
+                                    '&:hover': {
+                                        backgroundColor: 'primary.light',
+                                    },
+                                }}
+                                fullWidth={true}
+                                onClick={handleCheckout}
+                            >
+                                Checkout
+                            </Button>
+                        </>
+                    )}
                 </Stack>
             </Popover>
         </div>

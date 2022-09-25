@@ -87,20 +87,6 @@ const themeCustomizations = createTheme({
                 },
             },
         },
-        MuiPaper: {
-            styleOverrides: {
-                root: {
-                    maxWidth: 'calc(100% - 16px) !important'
-                }
-            }
-        },
-        MuiModal: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                }
-            }
-        }
     },
 });
 
