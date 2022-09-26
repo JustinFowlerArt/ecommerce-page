@@ -94,8 +94,8 @@ export default function Cart() {
                         </Typography>
                     ) : (
                         <>
-                            {contents.map(product => (
-                                <CartItem key={product.id} product={product} />
+                            {contents.map(item => (
+                                <CartItem key={item.product.id} item={item} />
                             ))}
                             <Button
                                 variant='contained'

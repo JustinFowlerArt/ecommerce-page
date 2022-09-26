@@ -1,14 +1,14 @@
 import { Typography, IconButton, Avatar, Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { iProduct } from '../../types/shop/product';
 import { removeProduct } from '../cart/cartSlice';
 import { useAppDispatch } from '../../app/hooks';
+import { iCartItem } from '../../types/cart/cartItem';
 
-export const CartItem = ({ product }: {product: iProduct}) => {
+export const CartItem = ({ item  }: {item: iCartItem}) => {
     const dispatch = useAppDispatch();
 
     const handleDelete = () => {
-        dispatch(removeProduct(product.id));
+        dispatch(removeProduct(item.product.id));
     };
 
     return (
@@ -20,14 +20,14 @@ export const CartItem = ({ product }: {product: iProduct}) => {
         >
             <Avatar
                 variant='rounded'
-                src={`images/${product.images[0].url}`}
-                alt={product.images[0].title}
+                src={`images/${item.product.images[0].url}`}
+                alt={item.product.images[0].title}
                 sx={{ width: '50px', height: '50px' }}
             />
             <Stack maxWidth={'60%'}>
-                <Typography noWrap={true}>{product.title}</Typography>
+                <Typography noWrap={true}>{item.product.title}</Typography>
                 <Typography>
-                    ${product.salePrice} x {product.quantity} {' '}
+                    ${item.product.salePrice} x {item.quantity} {' '}
                     <Typography
                         component='span'
                         sx={{
@@ -35,7 +35,7 @@ export const CartItem = ({ product }: {product: iProduct}) => {
                             color: 'secondary.contrastText',
                         }}
                     >
-                        ${product.salePrice * product.quantity}
+                        ${item.product.salePrice * item.quantity}
                     </Typography>
                 </Typography>
             </Stack>

@@ -17,9 +17,7 @@ export const AddToCart = ({ product }: {product: iProduct}) => {
     };
 
     const handleSubmit = () => {
-        const addedProduct = {...product};
-        addedProduct.quantity = count;
-        dispatch(addProduct(addedProduct));
+        dispatch(addProduct({product: product, quantity: count}));
     };
 
     return (

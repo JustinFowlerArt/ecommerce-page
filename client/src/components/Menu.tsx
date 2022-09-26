@@ -8,6 +8,7 @@ import {
     ListItemText,
     Drawer,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Menu() {
     const [state, setState] = React.useState(false);
@@ -29,7 +30,7 @@ export default function Menu() {
     return (
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
             <IconButton onClick={toggleDrawer(true)}>
-                <img src='images/icon-menu.svg' alt='open' />
+                <MenuIcon />
             </IconButton>
             <Drawer anchor='left' open={state} onClose={toggleDrawer(false)}>
                 <Box

@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/store';
 
 // Define a type for the slice state
-import { iProduct } from '../../types/shop/product';
+import { iCartItem } from '../../types/cart/cartItem';
 
 // Define the initial state using that type
-const initialState: iProduct[] = [];
+const initialState: iCartItem[] = [];
 
 export const cartSlice = createSlice({
     name: 'cart',
@@ -13,9 +13,10 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         // Use the PayloadAction type to declare the contents of `action.payload`
-        addProduct: (state, action: PayloadAction<iProduct>) => {
-            const {id, quantity} = action.payload
-            const itemInCart = state.find(i => i.id === id);
+        addProduct: (state, action: PayloadAction<iCartItem>) => {
+            const {quantity} = action.payload
+            const {id} = action.payload.product
+            const itemInCart = state.find(i => i.product.id === id);
             if (itemInCart) {
                 itemInCart.quantity += quantity;
             } else {
@@ -23,7 +24,7 @@ export const cartSlice = createSlice({
             }
         },
         removeProduct: (state, action: PayloadAction<number>) => {
-            return state.filter(i => i.id !== action.payload);
+            return state.filter(i => i.product.id !== action.payload);
         },
         checkout: (state) => {
             return state = [];

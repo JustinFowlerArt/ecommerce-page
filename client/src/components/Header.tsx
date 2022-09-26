@@ -5,9 +5,9 @@ import Cart from '../features/cart/Cart';
 
 export const Header = () => (
     <header>
-        <Grid container paddingX={{ xs: 2, md: 0 }} paddingY={{ xs: 2, md: 4 }}>
+        <Grid container paddingX={{ xs: 2, md: 0 }} paddingY={{ xs: 2, md: 4 }} alignItems='center'>
             <Grid xs={6} md={10}>
-                <Stack direction='row' alignItems='flex-end'>
+                <Stack direction='row' alignItems='center'>
                     <Menu />
                     <Link ml={{ xs: 1, md: 0 }} mr={{ xs: 0, md: 3 }} href='#'>
                         <img src='images/logo.svg' alt='sneakers logo' />
