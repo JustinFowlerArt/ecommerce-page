@@ -27,7 +27,7 @@ export const CartItem = ({ item  }: {item: iCartItem}) => {
             <Stack maxWidth={'60%'}>
                 <Typography noWrap={true}>{item.product.title}</Typography>
                 <Typography>
-                    ${item.product.salePrice} x {item.quantity} {' '}
+                    {item.quantity > 1 && `$${item.product.salePrice} x ${item.quantity} `}
                     <Typography
                         component='span'
                         sx={{

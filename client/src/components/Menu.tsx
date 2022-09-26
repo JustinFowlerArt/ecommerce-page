@@ -9,6 +9,7 @@ import {
     Drawer,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Menu() {
     const [state, setState] = React.useState(false);
@@ -44,7 +45,7 @@ export default function Menu() {
                             <ListItemButton onClick={toggleDrawer(false)} sx={{
                                 marginBottom: '1rem'
                             }}>
-                                <img src='images/icon-close.svg' alt='close' />
+                                <CloseIcon />
                             </ListItemButton>
                         </ListItem>
                         {[
