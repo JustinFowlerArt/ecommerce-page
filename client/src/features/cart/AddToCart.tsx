@@ -4,7 +4,7 @@ import { Counter } from './Counter';
 import { iProduct } from '../../types/shop/product';
 import { useAppDispatch } from '../../app/hooks';
 import { useState } from 'react';
-import { addProduct } from './cartSlice';
+import { addItem } from './cartSlice';
 
 export const AddToCart = ({ product }: {product: iProduct}) => {
     const [count, setCount] = useState(0);
@@ -17,7 +17,9 @@ export const AddToCart = ({ product }: {product: iProduct}) => {
     };
 
     const handleSubmit = () => {
-        dispatch(addProduct({product: product, quantity: count}));
+        const addedItem = {...product}
+        addedItem.quantity = count;
+        dispatch(addItem(addedItem));
     };
 
     return (

@@ -6,5 +6,6 @@ export type iProduct = {
     description: string;
     price: number;
     salePrice: number;
+    quantity: number;
     images: Image[];
 };

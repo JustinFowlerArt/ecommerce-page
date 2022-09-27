@@ -11,7 +11,7 @@ import {
     Badge,
 } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { cartContents, checkout } from '../cart/cartSlice';
+import { selectAll, checkout } from '../cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { CartItem } from './CartItem';
 
@@ -21,10 +21,11 @@ export default function Cart() {
     );
     const [message, setMessage] = React.useState('Your cart is empty')
 
-    const contents = useAppSelector(cartContents);
+    const contents = useAppSelector(selectAll);
     const dispatch = useAppDispatch();
 
     const theme = useTheme();
+    const xs = useMediaQuery(theme.breakpoints.down('sm'));
     const md = useMediaQuery(theme.breakpoints.up('md'));
 
     const open = Boolean(anchorEl);
@@ -61,7 +62,7 @@ export default function Cart() {
                 sx={{
                     '& .MuiPaper-root': {
                         maxWidth: 'calc(100% - 16px) !important',
-                        minWidth: !md ? 'calc(100% - 16px) !important' : '',
+                        minWidth: xs ? 'calc(100% - 16px) !important' : '',
                     },
                 }}
                 anchorOrigin={{
@@ -86,7 +87,7 @@ export default function Cart() {
                         <Typography
                             color='secondary.dark'
                             fontWeight='bold'
-                            paddingX={{ md: 10 }}
+                            paddingX={10}
                             paddingY={6}
                             align='center'
                         >
@@ -95,7 +96,7 @@ export default function Cart() {
                     ) : (
                         <>
                             {contents.map(item => (
-                                <CartItem key={item.product.id} item={item} />
+                                <CartItem key={item.id} item={item} />
                             ))}
                             <Button
                                 variant='contained'

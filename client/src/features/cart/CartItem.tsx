@@ -1,14 +1,14 @@
 import { Typography, IconButton, Avatar, Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { removeProduct } from '../cart/cartSlice';
+import { removeItem } from '../cart/cartSlice';
 import { useAppDispatch } from '../../app/hooks';
-import { iCartItem } from '../../types/cart/cartItem';
+import { iProduct } from '../../types/shop/product';
 
-export const CartItem = ({ item  }: {item: iCartItem}) => {
+export const CartItem = ({ item  }: {item: iProduct}) => {
     const dispatch = useAppDispatch();
 
     const handleDelete = () => {
-        dispatch(removeProduct(item.product.id));
+        dispatch(removeItem(item.id));
     };
 
     return (
@@ -20,14 +20,14 @@ export const CartItem = ({ item  }: {item: iCartItem}) => {
         >
             <Avatar
                 variant='rounded'
-                src={`images/${item.product.images[0].url}`}
-                alt={item.product.images[0].title}
+                src={`images/${item.images[0].url}`}
+                alt={item.images[0].title}
                 sx={{ width: '50px', height: '50px' }}
             />
             <Stack maxWidth={'60%'}>
-                <Typography noWrap={true}>{item.product.title}</Typography>
+                <Typography noWrap={true}>{item.title}</Typography>
                 <Typography>
-                    {item.quantity > 1 && `$${item.product.salePrice} x ${item.quantity} `}
+                    {item.quantity > 1 && `$${item.salePrice} x ${item.quantity} `}
                     <Typography
                         component='span'
                         sx={{
@@ -35,7 +35,7 @@ export const CartItem = ({ item  }: {item: iCartItem}) => {
                             color: 'secondary.contrastText',
                         }}
                     >
-                        ${item.product.salePrice * item.quantity}
+                        ${item.salePrice * item.quantity}
                     </Typography>
                 </Typography>
             </Stack>
