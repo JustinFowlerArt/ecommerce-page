@@ -21,14 +21,22 @@ export const Counter = ({ count, handleClick }: Props) => (
             justifyContent='space-between'
             alignItems='center'
         >
-            <IconButton color='primary' onClick={() => handleClick(-1)}>
+            <IconButton
+                color='primary'
+                onClick={() => handleClick(-1)}
+                aria-label='Decrease quantity by 1'
+            >
                 <RemoveIcon
                     fontSize='small'
                     sx={{ '&:hover': { color: 'primary.light' } }}
                 />
             </IconButton>
             <Typography variant='h4'>{count}</Typography>
-            <IconButton color='primary' onClick={() => handleClick(1)}>
+            <IconButton
+                color='primary'
+                onClick={() => handleClick(1)}
+                aria-label='Increase quantity by 1'
+            >
                 <AddIcon
                     fontSize='small'
                     sx={{ '&:hover': { color: 'primary.light' } }}

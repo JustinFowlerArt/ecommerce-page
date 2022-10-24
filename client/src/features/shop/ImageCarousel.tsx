@@ -70,14 +70,15 @@ export const ImageCarousel = ({
                         md
                             ? {
                                   borderRadius: '10px',
+                                  width: '100%',
                                   cursor: !open ? 'pointer' : 'default',
                               }
                             : {
                                   height: '300px',
+                                  width: '100%',
                                   objectFit: 'cover',
                               }
                     }
-                    width='100%'
                     src={`images/${images[currentImageIndex].url}`}
                     alt='sneakers'
                 />
@@ -85,6 +86,7 @@ export const ImageCarousel = ({
                     open={open}
                     direction='left'
                     onClick={previousSlide}
+                    aria-label='Previous image'
                 >
                     <KeyboardArrowLeftRoundedIcon
                         sx={{
@@ -99,6 +101,7 @@ export const ImageCarousel = ({
                     open={open}
                     direction='right'
                     onClick={nextSlide}
+                    aria-label='Next image'
                 >
                     <KeyboardArrowRightRoundedIcon
                         sx={{
@@ -168,7 +171,6 @@ export const ImageCarousel = ({
                             }}
                             src={`images/${item.url}?w=50&h=50&fit=crop&auto=format`}
                             alt={item.title}
-                            loading='lazy'
                         />
                     </ImageListItem>
                 ))}

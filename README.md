@@ -7,6 +7,7 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -35,6 +36,10 @@ Users should be able to:
 ![desktop design](./client/src/design/final-desktop.png)
 ![desktop cart](./client/src/design/final-desktop-cart.png)
 ![desktop lightbox](./client/src/design/final-desktop-lightbox.png)
+
+### Links
+- [Solution URL](https://www.frontendmentor.io/solutions/ecommerce-page-with-react-redux-toolkit-typescript-and-material-ui-WXn66pQmz-)
+- [Live Site URL](https://ecommerce-page.justinfowlerart.com/)
 
 ## My process
 

@@ -46,7 +46,7 @@ export default function Cart() {
 
     return (
         <div>
-            <IconButton aria-describedby={id} onClick={handleClick}>
+            <IconButton aria-label='Open cart' onClick={handleClick}>
                 <Badge badgeContent={contents.length} color='primary'>
                     <ShoppingCartOutlinedIcon />
                 </Badge>

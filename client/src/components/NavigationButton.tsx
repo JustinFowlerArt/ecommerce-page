@@ -18,6 +18,6 @@ export const NavigationButton = styled(IconButton, {
         left: direction === 'right' ? '' : 0,
         right: direction === 'left' ? '' : 0,
     }
-})) as typeof IconButton;
+}));
 
 

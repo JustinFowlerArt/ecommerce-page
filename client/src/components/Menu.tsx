@@ -30,7 +30,7 @@ export default function Menu() {
 
     return (
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-            <IconButton onClick={toggleDrawer(true)}>
+            <IconButton onClick={toggleDrawer(true)} aria-label='Open menu'>
                 <MenuIcon />
             </IconButton>
             <Drawer anchor='left' open={state} onClose={toggleDrawer(false)}>
@@ -42,9 +42,13 @@ export default function Menu() {
                 >
                     <List>
                         <ListItem>
-                            <ListItemButton onClick={toggleDrawer(false)} sx={{
-                                marginBottom: '1rem'
-                            }}>
+                            <ListItemButton
+                                onClick={toggleDrawer(false)}
+                                sx={{
+                                    marginBottom: '1rem',
+                                }}
+                                aria-label='Close menu'
+                            >
                                 <CloseIcon />
                             </ListItemButton>
                         </ListItem>
