@@ -19,7 +19,7 @@ export default function Cart() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
         null
     );
-    const [message, setMessage] = React.useState('Your cart is empty')
+    const [message, setMessage] = React.useState('Your cart is empty');
 
     const contents = useAppSelector(selectAll);
     const dispatch = useAppDispatch();
@@ -37,12 +37,13 @@ export default function Cart() {
 
     const handleClose = () => {
         setAnchorEl(null);
+        setMessage('Your cart is empty');
     };
 
     const handleCheckout = () => {
-        setMessage('Order received. Thanks for shopping!')
-        dispatch(checkout())
-    }
+        setMessage('Order received. Thanks for shopping!');
+        dispatch(checkout());
+    };
 
     return (
         <div>
